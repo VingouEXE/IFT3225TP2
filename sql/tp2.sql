@@ -24,9 +24,12 @@ CREATE TABLE IF NOT EXISTS `categories` (
   PRIMARY KEY (`Id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- Dumping data for table tp2.categories: ~0 rows (approximately)
+-- Dumping data for table tp2.categories: ~2 rows (approximately)
 DELETE FROM `categories`;
 /*!40000 ALTER TABLE `categories` DISABLE KEYS */;
+INSERT INTO `categories` (`Id`, `Name`) VALUES
+	(1, 'test'),
+	(2, 'test2');
 /*!40000 ALTER TABLE `categories` ENABLE KEYS */;
 
 -- Dumping structure for table tp2.roles
@@ -57,11 +60,11 @@ CREATE TABLE IF NOT EXISTS `tasks` (
   PRIMARY KEY (`Id`),
   KEY `FK__users` (`User`),
   KEY `FK_tasks_categories` (`Category`),
-  CONSTRAINT `FK__users` FOREIGN KEY (`User`) REFERENCES `users` (`Id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `FK_tasks_categories` FOREIGN KEY (`Category`) REFERENCES `categories` (`Id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  CONSTRAINT `FK__users` FOREIGN KEY (`User`) REFERENCES `users` (`Id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `FK_tasks_categories` FOREIGN KEY (`Category`) REFERENCES `categories` (`Id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
--- Dumping data for table tp2.tasks: ~0 rows (approximately)
+-- Dumping data for table tp2.tasks: ~2 rows (approximately)
 DELETE FROM `tasks`;
 /*!40000 ALTER TABLE `tasks` DISABLE KEYS */;
 /*!40000 ALTER TABLE `tasks` ENABLE KEYS */;
@@ -76,10 +79,10 @@ CREATE TABLE IF NOT EXISTS `users` (
   PRIMARY KEY (`Id`),
   UNIQUE KEY `Email` (`Email`),
   KEY `FK__roles` (`Role`),
-  CONSTRAINT `FK__roles` FOREIGN KEY (`Role`) REFERENCES `roles` (`Id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  CONSTRAINT `FK__roles` FOREIGN KEY (`Role`) REFERENCES `roles` (`Id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
--- Dumping data for table tp2.users: ~0 rows (approximately)
+-- Dumping data for table tp2.users: ~2 rows (approximately)
 DELETE FROM `users`;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
