@@ -20,31 +20,33 @@ USE `tp2`;
 -- Dumping structure for table tp2.categories
 CREATE TABLE IF NOT EXISTS `categories` (
   `Id` int(11) NOT NULL,
-  `Name` varchar(50) DEFAULT NULL,
+  `Name` varchar(50) NOT NULL,
+  `Created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`Id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- Dumping data for table tp2.categories: ~2 rows (approximately)
 DELETE FROM `categories`;
 /*!40000 ALTER TABLE `categories` DISABLE KEYS */;
-INSERT INTO `categories` (`Id`, `Name`) VALUES
-	(1, 'test'),
-	(2, 'test2');
+INSERT INTO `categories` (`Id`, `Name`, `Created_at`) VALUES
+	(1, 'Bugfix', '2023-07-16 15:07:44'),
+	(2, 'Task', '2023-07-16 15:07:44');
 /*!40000 ALTER TABLE `categories` ENABLE KEYS */;
 
 -- Dumping structure for table tp2.roles
 CREATE TABLE IF NOT EXISTS `roles` (
   `Id` int(11) NOT NULL AUTO_INCREMENT,
   `Role` varchar(50) NOT NULL,
+  `Created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`Id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 -- Dumping data for table tp2.roles: ~2 rows (approximately)
 DELETE FROM `roles`;
 /*!40000 ALTER TABLE `roles` DISABLE KEYS */;
-INSERT INTO `roles` (`Id`, `Role`) VALUES
-	(1, 'Admin'),
-	(2, 'User');
+INSERT INTO `roles` (`Id`, `Role`, `Created_at`) VALUES
+	(1, 'Admin', '2023-07-16 15:07:00'),
+	(2, 'User', '2023-07-16 15:07:00');
 /*!40000 ALTER TABLE `roles` ENABLE KEYS */;
 
 -- Dumping structure for table tp2.tasks
@@ -57,14 +59,16 @@ CREATE TABLE IF NOT EXISTS `tasks` (
   `Deleted` binary(1) NOT NULL DEFAULT '0',
   `Description` varchar(255) NOT NULL DEFAULT '',
   `Category` int(11) NOT NULL DEFAULT 0,
+  `Created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `Updated_at` timestamp NOT NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`Id`),
   KEY `FK__users` (`User`),
   KEY `FK_tasks_categories` (`Category`),
   CONSTRAINT `FK__users` FOREIGN KEY (`User`) REFERENCES `users` (`Id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `FK_tasks_categories` FOREIGN KEY (`Category`) REFERENCES `categories` (`Id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
 
--- Dumping data for table tp2.tasks: ~2 rows (approximately)
+-- Dumping data for table tp2.tasks: ~6 rows (approximately)
 DELETE FROM `tasks`;
 /*!40000 ALTER TABLE `tasks` DISABLE KEYS */;
 /*!40000 ALTER TABLE `tasks` ENABLE KEYS */;
@@ -76,13 +80,14 @@ CREATE TABLE IF NOT EXISTS `users` (
   `Password` varchar(255) NOT NULL,
   `Email` varchar(255) NOT NULL,
   `Role` int(11) NOT NULL DEFAULT 0,
+  `Created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`Id`),
   UNIQUE KEY `Email` (`Email`),
   KEY `FK__roles` (`Role`),
   CONSTRAINT `FK__roles` FOREIGN KEY (`Role`) REFERENCES `roles` (`Id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
 
--- Dumping data for table tp2.users: ~2 rows (approximately)
+-- Dumping data for table tp2.users: ~4 rows (approximately)
 DELETE FROM `users`;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
