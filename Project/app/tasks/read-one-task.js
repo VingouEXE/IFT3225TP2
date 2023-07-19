@@ -2,7 +2,7 @@ $(document).ready(function () {
   $(document).on("click", ".read-one-task-button", function () {
     var id = $(this).attr("data-id");
     $.getJSON(
-      "http://localhost/test2/api/tasks/read_one.php?id=" + id,
+      "https://www-ens.iro.umontreal.ca/~clouatrv/api/tasks/read_one.php?id=" + id,
       function (data) {
         var read_one_product_html =
           `

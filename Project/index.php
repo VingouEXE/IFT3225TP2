@@ -14,12 +14,12 @@
 <body>
     <?php
     session_start();
-    if( isset( $_SESSION['id'] ) ) { 
-        echo "<div id=userId hidden><p>".$_SESSION['id']."<p></div>";
-        echo "<div id=userRole hidden><p>".$_SESSION['role']."<p></div>";
-        echo '<div><a href="logout.php">Disconnect</a></div>';?>
-    <div id="app"></div>
-    <?php  }else { ?>
+    if (isset($_SESSION['id'])) {
+        echo "<div id=userId hidden><p>" . $_SESSION['id'] . "<p></div>";
+        echo "<div id=userRole hidden><p>" . $_SESSION['role'] . "<p></div>";
+        echo '<div><a href="logout.php">Disconnect</a></div>'; ?>
+        <div id="app"></div>
+    <?php } else { ?>
         <div id="login"></div>
     <?php }
     ?>

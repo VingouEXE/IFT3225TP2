@@ -2,7 +2,7 @@ $(document).ready(function () {
   $(document).on("click", ".create-sign-button", function () {
     var categories_options_html = "";
     var user_options_html = "";
-    $.getJSON("http://localhost/test2/api/roles/read.php", function (data) {
+    $.getJSON("https://www-ens.iro.umontreal.ca/~clouatrv/api/roles/read.php", function (data) {
       categories_options_html = `<select name='role' class='form-control'>`;
       $.each(data.records, function (key, val) {
         categories_options_html +=
@@ -50,7 +50,7 @@ $(document).ready(function () {
   $(document).on("submit", "#create-sign-form", function () {
     var form_data = JSON.stringify($(this).serializeObject());
     $.ajax({
-      url: "http://localhost/test2/api/users/create.php",
+      url: "https://www-ens.iro.umontreal.ca/~clouatrv/api/users/create.php",
       type: "POST",
       contentType: "application/json",
       data: form_data,

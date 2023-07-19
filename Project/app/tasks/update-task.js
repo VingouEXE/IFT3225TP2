@@ -2,7 +2,8 @@ $(document).ready(function () {
   $(document).on("click", ".update-task-button", function () {
     var id = $(this).attr("data-id");
     $.getJSON(
-      "http://localhost/test2/api/tasks/read_one.php?id=" + id,
+      "https://www-ens.iro.umontreal.ca/~clouatrv/api/tasks/read_one.php?id=" +
+        id,
       function (data) {
         var title = data.title;
         var date = data.date;
@@ -11,11 +12,11 @@ $(document).ready(function () {
         var category = data.category;
         var finish = data.finish;
         $.getJSON(
-          "http://localhost/test2/api/categories/read.php",
+          "https://www-ens.iro.umontreal.ca/~clouatrv/api/categories/read.php",
           function (data) {
             var categories_options_html = `<select name='category' class='form-control'>`;
             $.each(data.records, function (key, val) {
-              if (val.id == category) {
+              if (val.name == category) {
                 categories_options_html +=
                   `<option value='` +
                   val.id +
@@ -29,11 +30,11 @@ $(document).ready(function () {
             });
             categories_options_html += `</select>`;
             $.getJSON(
-              "http://localhost/test2/api/users/read.php",
+              "https://www-ens.iro.umontreal.ca/~clouatrv/api/users/read.php",
               function (data) {
                 var users_options_html = `<select name='user' class='form-control'>`;
                 $.each(data.records, function (key, val) {
-                  if (val.id == user) {
+                  if (val.name == user) {
                     users_options_html +=
                       `<option value='` +
                       val.id +
@@ -120,7 +121,7 @@ $(document).ready(function () {
   $(document).on("submit", "#update-task-form", function () {
     var form_data = JSON.stringify($(this).serializeObject());
     $.ajax({
-      url: "http://localhost/test2/api/tasks/update.php",
+      url: "https://www-ens.iro.umontreal.ca/~clouatrv/api/tasks/update.php",
       type: "POST",
       contentType: "application/json",
       data: form_data,

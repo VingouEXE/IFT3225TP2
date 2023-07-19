@@ -6,7 +6,7 @@ $(document).ready(function () {
 });
 
 function showLogin() {
-  $.getJSON("http://localhost/test2/api/users/read.php", function (data) {
+  $.getJSON("https://www-ens.iro.umontreal.ca/~clouatrv/api/users/read.php", function (data) {
     loginTemplate();
     changePageTitle("Login");
   });

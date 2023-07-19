@@ -28,7 +28,7 @@ function loginTemplate() {
 $(document).on("submit", "#login-form", function () {
   var form_data = JSON.stringify($(this).serializeObject());
   $.ajax({
-    url: "http://localhost/test2/api/users/check.php",
+    url: "https://www-ens.iro.umontreal.ca/~clouatrv/api/users/check.php",
     type: "POST",
     contentType: "application/json",
     data: form_data,

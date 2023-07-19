@@ -1,12 +1,13 @@
+<?php if (isset($_GET['source']))
+    die(highlight_file(__FILE__, 1)); ?>
 <?php
-
 class Database
 {
 
-    private $username = "root";
-    private $host = "localhost";
-    private $db_name = "tp2";
-    private $password = "root";
+    private $username = "clouatrv";
+    private $host = "www-ens";
+    private $db_name = "clouatrv_web";
+    private $password = "trvvj47C";
     public $conn;
 
     // get the database connection

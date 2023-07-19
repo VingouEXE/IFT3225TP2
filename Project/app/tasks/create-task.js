@@ -3,7 +3,7 @@ $(document).ready(function () {
     var categories_options_html = "";
     var user_options_html = "";
     $.getJSON(
-      "http://localhost/test2/api/categories/read.php",
+      "https://www-ens.iro.umontreal.ca/~clouatrv/api/categories/read.php",
       function (data) {
         categories_options_html = `<select name='category' class='form-control'>`;
         $.each(data.records, function (key, val) {
@@ -11,7 +11,7 @@ $(document).ready(function () {
             `<option value='` + val.id + `'>` + val.name + `</option>`;
         });
         categories_options_html += `</select>`;
-        $.getJSON("http://localhost/test2/api/users/read.php", function (data) {
+        $.getJSON("https://www-ens.iro.umontreal.ca/~clouatrv/api/users/read.php", function (data) {
           user_options_html = `<select name='user' class='form-control'>`;
           $.each(data.records, function (key, val) {
             user_options_html +=
@@ -69,7 +69,7 @@ $(document).ready(function () {
   $(document).on("submit", "#create-task-form", function () {
     var form_data = JSON.stringify($(this).serializeObject());
     $.ajax({
-      url: "http://localhost/test2/api/tasks/create.php",
+      url: "https://www-ens.iro.umontreal.ca/~clouatrv/api/tasks/create.php",
       type: "POST",
       contentType: "application/json",
       data: form_data,

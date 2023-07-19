@@ -6,7 +6,7 @@ $(document).ready(function () {
 });
 
 function showTasks() {
-  $.getJSON("http://localhost/test2/api/tasks/read.php", function (data) {
+  $.getJSON("https://www-ens.iro.umontreal.ca/~clouatrv/api/tasks/read.php", function (data) {
     readTasksTemplate(data, "");
     changePageTitle("Read Tasks");
   });

@@ -186,7 +186,7 @@ class Task
 
     function search($keywords){
 
-        $query ="SELECT t.*, c.name as category_name, u.u as user_name
+        $query ="SELECT t.*, c.name as category_name, u.name as user_name
         FROM " . $this->table_name . " t
         LEFT JOIN categories c ON t.category = c.id
         LEFT JOIN users u ON t.user = u.id
@@ -201,6 +201,7 @@ class Task
     
         $stmt->bindParam(1, $keywords);
         $stmt->bindParam(2, $keywords);
+        $stmt->bindParam(3, $keywords);
     
         $stmt->execute();
     

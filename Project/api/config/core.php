@@ -5,7 +5,7 @@
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
 
-$home_url = "http://localhost/api/";
+$home_url = "https://www-ens.iro.umontreal.ca/~clouatrv/api/";
 
 $page = isset($_GET['page']) ? $_GET['page'] : 1;
 
