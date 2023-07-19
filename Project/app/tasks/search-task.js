@@ -1,17 +1,11 @@
-/*$(document).ready(function(){
-    // when a 'search tasks' button was clicked
-    $(document).on('submit', '#search-product-form', function(){
-        // get search keywords
+$(document).ready(function(){
+    $(document).on('submit', '#search-task-form', function(){
         var keywords = $(this).find(":input[name='keywords']").val();
-            changePageTitle("Search tasks: " + keywords);
-        // get data from the api based on search keywords
-        $.getJSON("https://www-ens.iro.umontreal.ca/~pift3225/restApi/api/product/search.php?s=" + keywords, function(data){
-            // template in tasks.js
-            readProductsTemplate(data, keywords);
-            // chage page title
-            changePageTitle("Search tasks: " + keywords);
+            changePageTitle("Search Task: " + keywords);
+        $.getJSON("http://localhost/test2/api/tasks/search.php?s=" + keywords, function(data){
+            readTasksTemplate(data, keywords);
+            changePageTitle("Search products: " + keywords);
         });
-        // prevent whole page reload
         return false;
     });
-});*/
+});

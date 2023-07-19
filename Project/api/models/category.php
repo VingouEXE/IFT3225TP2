@@ -1,75 +1,74 @@
-<?php if (isset($_GET['source'])) die(highlight_file(__FILE__, 1)); ?>
+<?php if (isset($_GET['source']))
+    die(highlight_file(__FILE__, 1)); ?>
 
 <?php
-class Category{
-  
-    // database connection and table name
+class Category
+{
+
     private $conn;
     private $table_name = "categories";
-  
-    // object properties
+
     public $id;
     public $name;
     public $created_at;
-  
-    public function __construct($db){
+
+    public function __construct($db)
+    {
         $this->conn = $db;
     }
-  
-    // used by select drop-down list
-    public function readAll(){
-        //select all data
+
+    public function readAll()
+    {
         $query = "SELECT *
                 FROM
                     " . $this->table_name;
-  
-        $stmt = $this->conn->prepare( $query );
+
+        $stmt = $this->conn->prepare($query);
         $stmt->execute();
-  
+
         return $stmt;
     }
 
-    public function readAllOrder($ord){
-        //select all data
+    public function readAllOrder($ord)
+    {
         $query = "SELECT *
                 FROM
                     " . $this->table_name . "
                 ORDER BY " . $ord;
-  
-        $stmt = $this->conn->prepare( $query );
+
+        $stmt = $this->conn->prepare($query);
         $stmt->execute();
-  
+
         return $stmt;
     }
 
-    // used by select drop-down list
-  public function readByIdOrder($id, $ord){
+    public function readByIdOrder($id, $ord)
+    {
 
-    //select all data
-    $query = "SELECT *
+        $query = "SELECT *
             FROM
                 " . $this->table_name . "
-            WHERE id = ". $id . "
+            WHERE id = " . $id . "
             ORDER BY" . $ord;
 
-    $stmt = $this->conn->prepare( $query );
-    $stmt->execute();
+        $stmt = $this->conn->prepare($query);
+        $stmt->execute();
 
-    return $stmt;
-  }
+        return $stmt;
+    }
 
-  public function readById($id){
+    public function readById($id)
+    {
 
-    //select all data
-    $query = "SELECT *
+        $query = "SELECT *
             FROM
                 " . $this->table_name . "
-            WHERE id = ". $id;
+            WHERE id = " . $id;
 
-    $stmt = $this->conn->prepare( $query );
-    $stmt->execute();
+        $stmt = $this->conn->prepare($query);
+        $stmt->execute();
 
-    return $stmt;
-  }
+        return $stmt;
+    }
 }
 ?>

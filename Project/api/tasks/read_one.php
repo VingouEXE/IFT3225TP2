@@ -1,54 +1,43 @@
-<?php if (isset($_GET['source'])) die(highlight_file(__FILE__, 1)); ?>
+<?php if (isset($_GET['source']))
+    die(highlight_file(__FILE__, 1)); ?>
 
 <?php
-// required headers
 header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Headers: access");
 header("Access-Control-Allow-Methods: GET");
 header("Access-Control-Allow-Credentials: true");
 header('Content-Type: application/json');
-  
-// include database and object files
+
 include_once '../config/database.php';
 include_once '../models/task.php';
-  
-// get database connection
+
 $database = new Database();
 $db = $database->getConnection();
-  
-// prepare product object
+
 $task = new Task($db);
-  
-// set ID property of record to read
+
 $task->id = isset($_GET['id']) ? $_GET['id'] : die();
-  
-// read the details of product to be edited
+
 $task->readOne();
-  
-if($task->title!=null){
-    // create array
+
+if ($task->title != null) {
     $task_arr = array(
-        "id" =>  $task->id,
+        "id" => $task->id,
         "title" => $task->title,
         "description" => $task->description,
         "category" => $task->category,
         "date" => $task->date,
         "finish" => $task->finish,
         "deleted" => $task->deleted,
-        "user" => $task->user
+        "user" => $task->user,
+        "userN" => $task->user_name
     );
-    // set response code - 200 OK
     http_response_code(200);
-  
-    // make it json format
+
     echo json_encode($task_arr);
-}
-  
-else{
-    // set response code - 404 Not found
+} else {
     http_response_code(404);
-  
-    // tell the user product does not exist
-    echo json_encode(array("message" => "Product does not exist."));
+
+    echo json_encode(array("message" => "task does not exist."));
 }
 ?>

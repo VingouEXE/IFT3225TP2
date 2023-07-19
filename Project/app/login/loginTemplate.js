@@ -1,9 +1,9 @@
-function loginTemplate(){
-    formL="<div id='create-signin' class='btn btn-primary pull-right m-b-15px create-sign-button'>";
-    formL+="<span class='glyphicon glyphicon-plus'></span> SignIn";
-    formL+="</div>";
-  
-    formL +=`<form id='login-form' action='#' method='post' border='0'>"
+function loginTemplate() {
+  formL =
+    "<div id='create-signin' class='btn btn-primary pull-right m-b-15px create-sign-button'>";
+  formL += "Sign In";
+  formL += "</div>";
+  formL += `<form id='login-form' action='#' method='post' border='0'>
     		<table class='table table-hover table-responsive table-bordered'>
         		<tr>
 					<td>Email</td>
@@ -22,35 +22,26 @@ function loginTemplate(){
                     </td>
         		</tr>
     		</table>
-		</form>`
-
-    // inject to 'page-content' of our app
-    $("#page-login").html(formL);
+		</form>`;
+  $("#page-login").html(formL);
 }
-$(document).on('submit', '#login-form', function(){
-	// get form data
-	var form_data=JSON.stringify($(this).serializeObject());
-	// submit form data to api
-	$.ajax({
-    		url: "http://localhost/test2/api/users/check.php",
-    		type : "POST",
-    		contentType : 'application/json',
-    		data : form_data,
-    		success : function(result) {
-            if (result.message!="fail"){
-                showTasks();
-            }
-            else{
-
-            }
-        	// task was created, go back to tasks list
-
-        	
-    	},
-    	error: function(xhr, resp, text) {
-        	// show error to console
-        	console.log(xhr, resp, text);
-    	}
-        });
-        return false;
-    });
+$(document).on("submit", "#login-form", function () {
+  var form_data = JSON.stringify($(this).serializeObject());
+  $.ajax({
+    url: "http://localhost/test2/api/users/check.php",
+    type: "POST",
+    contentType: "application/json",
+    data: form_data,
+    success: function (result) {
+      if (result.message != "fail") {
+        document.location.href = "index.php";
+      } else {
+        document.getElementById("login-form").reset();
+      }
+    },
+    error: function (xhr, resp, text) {
+      console.log(xhr, resp, text);
+    },
+  });
+  return false;
+});
